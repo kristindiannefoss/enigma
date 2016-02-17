@@ -1,19 +1,17 @@
 require 'pry'
-require '../lib/key_generator'
 require 'date'
 
 class DateOffsetGenerator
 
-  attr_reader
+  attr_reader :date
 
-  def initialize (date_input = Date.today.strftime('%d%m%y'))
+  def initialize (date_input = Date.today)
+    @date = date_input
   end
 
-  def format_date (date_input)
-    a = (date_input).strftime('%d%m%y')
-    k= (a.to_i) ** 2
-    date_squared_array = k.to_s.chars
-    j = date_squared_array.last(4)
-    # j.to_s.concat.to_i
+  def formatted_date
+    date = @date.strftime('%d%m%y')
+    squared_date = (date.to_i) ** 2
+    squared_date.to_s.chars.last(4)
   end
 end

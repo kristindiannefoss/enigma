@@ -1,7 +1,7 @@
 gem 'minitest', '~> 5.2'
 require 'minitest/autorun'
 require 'minitest/pride'
-require '../lib/key_generator'
+require_relative 'key_generator'
 
 
 class KeyGeneratorTest < Minitest::Test
@@ -11,10 +11,19 @@ class KeyGeneratorTest < Minitest::Test
     assert_equal KeyGenerator, generator.class
   end
 
-  # def test_it_can_generate_a_random_numbers
-  #   generator = KeyGenerator.new
-  #   assert_equal 5, generator.random_number.length
-  # end
+  def test_it_can_generate_a_five_digit_number
+    generator = KeyGenerator.random_number
+    assert_equal 5, generator.to_s.length
+  end
+
+  def test_it_can_generate_random_numbers
+    generator = KeyGenerator.random_number
+    generator2 = KeyGenerator.random_number
+    generator3 = KeyGenerator.random_number
+    refute, generator = generator2
+    refute, generator2 = generator3
+    refute, generator3 = generator
+  end
 
   def test_it_can_generate_a_string_of_five_numbers
     skip
@@ -22,9 +31,5 @@ class KeyGeneratorTest < Minitest::Test
     new_key = generator.random_number
     assert_equal 5, new_key.length
     assert_equal String, new_key.class
-  end
-
-  def test_it_can_generate_five_random_numbers
-    skip
   end
 end
