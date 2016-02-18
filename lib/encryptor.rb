@@ -2,15 +2,15 @@ require 'pry'
 require_relative '../lib/key_generator'
 require_relative '../lib/date_offset_generator'
 
+
 class Encryptor
   attr_accessor :date
 
-  def initialize #(message, rotation, date)
-    # KeyGenerator.new
+  def initialize
     doom = DateOffsetGenerator.new
     key = "12345"
-    # @key = key
     date = doom.formatted_date
+
     a = (key[0] + key[1]).to_s
     a_ro = a.to_i + date[0].to_i
     b = (key[1] + key[2]).to_s
@@ -48,9 +48,5 @@ class Encryptor
       index = 0 if index > 3
         end
       result.join
-  end
-
-  def crack(output, date)
-    (output.length - 7) % 4 
   end
 end

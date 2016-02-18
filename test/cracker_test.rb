@@ -18,11 +18,4 @@ class CrackerTest < Minitest::Test
     assert_equal "this is so secret ..end..", nutcracker.crack(". i4p.sj e 4w5rq.0.kwddkq", Date.today)
   end
 
-  # def test_it_can_find_the_key_used_in_the_encrypted_message
-  #   nutcracker = Cracker.new
-  #   assert_equal "12345", nutcracker.crack(". i4p.sj e 4w5rq.0.kwddkq")
-  # end
-
-
-
 end

@@ -1,4 +1,7 @@
-require_relative "encryptor"
+require_relative 'encryptor'
+require_relative 'key_generator'
+require_relative 'date_offset_generator'
+require_relative 'cracker'
 
 class Enigma
 
@@ -6,8 +9,7 @@ class Enigma
     @encryptor = Encryptor.new
     @new_key = KeyGenerator.random_number
     @date = DateOffsetGenerator.new.formatted_date
-    @craquistador = Crack.new
-
+    @craquistador = Cracker.new
   end
 
   def encrypt(message, key = "12345", date)
@@ -15,11 +17,11 @@ class Enigma
   end
 
   def new_key
-    @new_key
+    @new_key.to_s
   end
 
   def crack(output, date = Date.today)
-    @craquistador.crack(message, date)
+    @craquistador.crack(output, date)
   end
 end
 

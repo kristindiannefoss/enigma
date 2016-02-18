@@ -1,6 +1,6 @@
 require 'pry'
 
-module KeyGenerator
+class KeyGenerator
 
   def self.random_number
     Random.rand(10000..99999).to_s

@@ -1,7 +1,7 @@
 gem 'minitest', '~> 5.2'
 require 'minitest/autorun'
 require 'minitest/pride'
-require_relative 'date_offset_generator'
+require '../lib/date_offset_generator'
 
 class DateOffsetTest < Minitest::Test
 

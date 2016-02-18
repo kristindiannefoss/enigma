@@ -2,9 +2,9 @@ require 'pry'
 require 'date'
 
 class DateOffsetGenerator
-  attr_reader :date
+  attr_reader :date 
 
-  def initialize (date_input = Date.today)
+  def initialize(date_input = Date.today)
     @date = date_input
   end
 

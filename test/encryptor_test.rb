@@ -33,16 +33,11 @@ class EncryptorTest < Minitest::Test
   def test_it_can_use_a_defined_cipher_hash_with_a_defined_key
    generator = Encryptor.new
      assert_equal ". i4p.sj e 4w5rq.0.kwddkq", generator.encrypt("this is so secret ..end..", "12345", Date.new(2016, 02, 17))
- end
-end #[18, 29, 39, 51]
+   end
 
+   def test_it_can_use_a_defined_cipher_hash_with_a_defined_key_to_encrypt_numbers_and_symbols
+    generator = Encryptor.new
+    assert_equal "00l0a7 4,dst0dep3nppsjq1ezv1.", generator.encrypt("I love sunshine! and *s ..end..", "12345", Date.today)
+  end
 
-#[18, 29, 39, 51]
-
-# def test_the_first_letter_is_rotated_by_the_doer_the_desired_amount_of_rotations
-#   generator = Encryptor.new
-#   assert_equal ["6", "6", "5", "6"],  DateOffsetGenerator.new((Date.new(2016, 02, 17)))
-#   #"key "12345", becomes [12, 23, 34, 45] in initialize"
-#   #"new total rotation array is [18, 29, 39, 51]"
-#   assert_equal "z. 5z7rq", generator.encrypt("hi there", "12345", Date.new(2016, 02, 17))
-# end
+end
