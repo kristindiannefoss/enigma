@@ -34,8 +34,6 @@ class Decryptor
   end
 
   def decrypt (message, key, date = DateOffsetGenerator.formatted_date)
-
-# (message, key = KeyGenerator.random_number, date = DateOffsetGenerator.formatted_date)
     doer(message, @rotation)
   end
 

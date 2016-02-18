@@ -6,6 +6,7 @@ class Enigma
     @encryptor = Encryptor.new
     @new_key = KeyGenerator.random_number
     @date = DateOffsetGenerator.new.formatted_date
+    @craquistador = Crack.new
 
   end
 
@@ -15,6 +16,10 @@ class Enigma
 
   def new_key
     @new_key
+  end
+
+  def crack(output, date = Date.today)
+    @craquistador.crack(message, date)
   end
 end
 
