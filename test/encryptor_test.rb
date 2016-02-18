@@ -29,6 +29,11 @@ class EncryptorTest < Minitest::Test
     generator = Encryptor.new
       assert_equal "s3am", generator.encrypt("aaaa", "12345", Date.new(2016, 02, 17))
   end
+
+  def test_it_can_use_a_defined_cipher_hash_with_a_defined_key
+   generator = Encryptor.new
+     assert_equal ". i4p.sj e 4w5rq.0.kwddkq", generator.encrypt("this is so secret ..end..", "12345", Date.new(2016, 02, 17))
+ end
 end #[18, 29, 39, 51]
 
 
