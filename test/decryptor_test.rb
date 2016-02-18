@@ -16,15 +16,9 @@ class DecryptorTest < Minitest::Test
   end
 #[18, 29, 39, 51]
   def test_the_resulting_message_from_the_doer_is_a_string
-    skip
     decrypto = Decryptor.new
     message = decrypto.decrypt("z. 5z7rq", "12345", Date.new(2016, 02, 17))
+    assert message = "hello world"
     assert_equal String, message.class
-  end
-
-  def test_it_can_still_encrypt_an_uppercase_letter_intake
-    skip
-    decrypto = Decryptor.new
-    assert_equal "z. 5z7rq", decrypto.decrypt("z. 5z7rq", "12345", Date.new(2016, 02, 17))
   end
 end

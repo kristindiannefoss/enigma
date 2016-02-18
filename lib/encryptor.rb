@@ -11,7 +11,6 @@ class Encryptor
     key = "12345"
     # @key = key
     date = doom.formatted_date
-# binding.pry
     a = (key[0] + key[1]).to_s
     a_ro = a.to_i + date[0].to_i
     b = (key[1] + key[2]).to_s
@@ -49,5 +48,9 @@ class Encryptor
       index = 0 if index > 3
         end
       result.join
+  end
+
+  def crack(output, date)
+    (output.length - 7) % 4 
   end
 end

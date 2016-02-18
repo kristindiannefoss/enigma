@@ -6,9 +6,8 @@ class Decryptor
   attr_accessor :date
 
   def initialize
-    doom = DateOffsetGenerator.new
     key = "12345"
-    date = doom.formatted_date
+    @date = DateOffsetGenerator.new.formatted_date
 
     a = (key[0] + key[1]).to_s
     a_ro = a.to_i + date[0].to_i
