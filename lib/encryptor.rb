@@ -2,7 +2,6 @@ require 'pry'
 require_relative '../lib/key_generator'
 require_relative '../lib/date_offset_generator'
 
-
 class Encryptor
   attr_accessor :date
 
@@ -35,7 +34,6 @@ class Encryptor
   end
 
   def encrypt (message, key, date = DateOffsetGenerator.formatted_date)
-# (message, key = KeyGenerator.random_number, date = DateOffsetGenerator.formatted_date)
     doer(message, @rotation)
   end
 
