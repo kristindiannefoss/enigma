@@ -7,8 +7,8 @@ class Enigma
 
   attr_accessor :new_key, :date
 
-  def initialize(message, key= nil, date)
-    @new_key =  key.nil? ? KeyGenerator.new.create_new_key : key
+  def initialize(message, key, date)
+    @new_key =  key.nil? ? KeyGenerator.new(key).create_new_key : key
     @date = date.nil? ? DateOffsetGenerator.new.formatted_date : date
     @encryptor = Encryptor.new(@new_key, @date)
     @decryptor = Decryptor.new(@new_key, @date)
