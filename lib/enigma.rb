@@ -5,24 +5,24 @@ require_relative 'cracker'
 
 class Enigma
 
-  attr_accessor :new_key
+  attr_accessor :new_key, :date
 
-  def initialize(message, key = nil, date = nil)
-    @new_key = key.nil? ? KeyGenerator.new(key).key : key
+  def initialize(message, key= nil, date)
+    @new_key =  key.nil? ? KeyGenerator.new.create_new_key : key
     @date = date.nil? ? DateOffsetGenerator.new.formatted_date : date
     @encryptor = Encryptor.new(@new_key, @date)
     @decryptor = Decryptor.new(@new_key, @date)
     #@craquistador = Cracker.new
   end
 
-  def encrypt(message, key = nil, date)
+  def encrypt(message, new_key, date)
     #print "enigma.rb: key = %d, date = %d\n" % [key,date]
-    @encryptor.encrypt(message, key, @date)
+    @encryptor.encrypt(message, new_key, @date)
   end
 
-  def decrypt(message, key = nil, date)
-    print "enigma.rb - decrypt(): key = %d, date = %d, @date = %s\n" % [key,date,@date.to_s]
-    @decryptor.decrypt(message, key, @date)
+  def decrypt(message, new_key, date)
+    # print "enigma.rb - decrypt(): key = %d, date = %d, @date = %s\n" % [key,date,@date.to_s]
+    @decryptor.decrypt(message, new_key, @date)
   end
 
   # def new_key

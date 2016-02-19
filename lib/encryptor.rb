@@ -5,24 +5,25 @@ require_relative '../lib/date_offset_generator'
 class Encryptor
   attr_accessor :date, :key
 
-  def initialize(key = nil, date =nil)
+  def initialize(key = nil, date)
     doom = DateOffsetGenerator.new
-    date = doom.formatted_date
+    @date = doom.formatted_date
+    new_key = key.nil? ? KeyGenerator.new.create_new_key : key
+    @key = new_key
 
-    key = KeyGenerator.new(key).key
-    #56123
-    a = (key[0] + key[1]).to_s
-    a_ro = a.to_i + date[0].to_i
-    b = (key[1] + key[2]).to_s
-    b_ro = b.to_i + date[1].to_i
-    c = (key[2] + key[3]).to_s
-    c_ro = c.to_i + date[2].to_i
-    d = (key[3] + key[4]).to_i
-    d_ro = d.to_i + date[3].to_i
-    print "encryptor.rb: a=%d,b=%d,c=%d,d=%d\n" % [a,b,c,d]
+    a = (@key[0] + @key[1]).to_s
+    a_ro = a.to_i + @date[0].to_i
+    b = (@key[1] + @key[2]).to_s
+    b_ro = b.to_i + @date[1].to_i
+    c = (@key[2] + @key[3]).to_s
+    c_ro = c.to_i + @date[2].to_i
+    d = (@key[3] + @key[4]).to_i
+    d_ro = d.to_i + @date[3].to_i
+    # binding.pry
+    # print "key_gen: a=%d,b=%d,c=%d,d=%d\n" % [a,b,c,d]
     @rotation = [a_ro, b_ro, c_ro, d_ro]
-    print "encryptor.rb: rotation = "
-    p @rotation
+    # print "key_gen: rotation = "
+    # p @rotation
   end
 
   def cipher(rotation)

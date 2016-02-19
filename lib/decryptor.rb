@@ -5,11 +5,10 @@ require_relative '../lib/date_offset_generator'
 class Decryptor
   attr_accessor :date, :key
 
-  def initialize(key=nil,date=nil)
+  def initialize(key,date)
     @date = DateOffsetGenerator.new.formatted_date
-    @key = KeyGenerator.new(key).key
-    print "%s: @key = %s\n" % [__FILE__,@key]
-
+    @key = key
+# binding.pry
     a = (@key[0] + @key[1]).to_s
     a_ro = a.to_i + @date[0].to_i
     b = (@key[1] + @key[2]).to_s
@@ -34,7 +33,6 @@ class Decryptor
 
   def decrypt_letter(message, rotation)
     cipher_for_rotation = cipher(rotation)
-    binding.pry
     cipher_for_rotation[message.downcase]
   end
 
