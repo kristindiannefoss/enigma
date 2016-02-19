@@ -5,8 +5,7 @@ require '../lib/decryptor'
 
 class Cracker
   attr_reader :date
-  def initialize#(output, date = Date.today)
-    # @date = DateOffsetGenerator.new.formatted_date
+  def initialize
     @decryptor = Decryptor.new
   end
 

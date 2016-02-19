@@ -6,7 +6,7 @@ require_relative '../lib/key_generator'
 
 class EncryptorTest < Minitest::Test
   def test_an_instance_of_Encryptor_can_be_created
-    generator = Encryptor.new
+    generator = Encryptor.new 
     assert_equal Encryptor, generator.class
   end
 
