@@ -1,10 +1,9 @@
 require 'pry'
 
 class KeyGenerator
-
   attr_reader :key
 
-  def initialize(input)
+  def initialize(input = "12345")
     if input.nil?
     @key = create_new_key
     else
@@ -12,7 +11,7 @@ class KeyGenerator
     end
   end
 
-  def create_new_key
+  def self.create_new_key
     Random.rand(10000..99999).to_s
   end
 end

@@ -1,35 +1,31 @@
 require 'pry'
 require_relative '../lib/key_generator'
 require_relative '../lib/date_offset_generator'
+require_relative '../lib/chars'
+require_relative '../lib/rotation'
 
 class Encryptor
-  attr_accessor :date, :key
+  include Characters, Rotation
+  attr_accessor :date, :key, :rotation
 
-  def initialize(key = nil, date)
-    doom = DateOffsetGenerator.new
-    @date = doom.formatted_date
-    new_key = key.nil? ? KeyGenerator.new.create_new_key : key
-    @key = new_key
+  def initialize
+    @date = DateOffsetGenerator.new(date).formatted_date
+    @key = "12345"
+      a = (@key[0] + @key[1]).to_s
+      a_ro = a.to_i + @date[0].to_i
+      b = (@key[1] + @key[2]).to_s
+      b_ro = b.to_i + @date[1].to_i
+      c = (@key[2] + @key[3]).to_s
+      c_ro = c.to_i + @date[2].to_i
+      d = (@key[3] + @key[4]).to_i
+      d_ro = d.to_i + @date[3].to_i
 
-    a = (@key[0] + @key[1]).to_s
-    a_ro = a.to_i + @date[0].to_i
-    b = (@key[1] + @key[2]).to_s
-    b_ro = b.to_i + @date[1].to_i
-    c = (@key[2] + @key[3]).to_s
-    c_ro = c.to_i + @date[2].to_i
-    d = (@key[3] + @key[4]).to_i
-    d_ro = d.to_i + @date[3].to_i
-    # binding.pry
-    # print "key_gen: a=%d,b=%d,c=%d,d=%d\n" % [a,b,c,d]
-    @rotation = [a_ro, b_ro, c_ro, d_ro]
-    # print "key_gen: rotation = "
-    # p @rotation
+      @rotation = [a_ro, b_ro, c_ro, d_ro]
+      # @rotation = rotation
   end
 
   def cipher(rotation)
-    characters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", " ", ".", ","]
-    rotated_characters = characters.rotate(rotation)
-    Hash[characters.zip(rotated_characters)]
+    Hash[characters.zip(characters.rotate(rotation))]
   end
 
   def encrypt_letter(message, rotation)
@@ -37,7 +33,9 @@ class Encryptor
     cipher_for_rotation[message.downcase]
   end
 
-  def encrypt (message, key, date = DateOffsetGenerator.formatted_date)
+  def encrypt (message, key, date)
+    @date = date
+    @key = key
     doer(message, @rotation)
   end
 
